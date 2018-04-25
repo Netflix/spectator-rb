@@ -121,24 +121,28 @@ module Spectator
       @http = Http.new(registry)
     end
 
-    # Start publishing if the config is acceptable:
-    #  uri is non-nil or empty
-    def start
+    def should_start?
       if @started
         Spectator.logger.info('Ignoring start request. ' \
           'Spectator registry already started')
-        return
+        return false
       end
 
       @started = true
-
       uri = @registry.config[:uri]
-      invalid = uri.nil? || uri.empty?
-      if invalid
+      if uri.nil? || uri.empty?
         Spectator.logger.info('Ignoring start request since Spectator ' \
                                   'registry has no valid uri')
-        return
+        return false
       end
+
+      true
+    end
+
+    # Start publishing if the config is acceptable:
+    #  uri is non-nil or empty
+    def start
+      return unless should_start?
 
       Spectator.logger.info 'Starting Spectator registry'
 

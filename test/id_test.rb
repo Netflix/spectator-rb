@@ -24,4 +24,19 @@ class IdTest < Minitest::Test
     id = Spectator::MeterId.new('name')
     assert_equal(:name, id.name)
   end
+
+  def test_key
+    tags = { key: 'foo', key2: 'foo2' }
+    id = Spectator::MeterId.new('test', tags)
+    assert_equal('test|key|foo|key2|foo2', id.key)
+    # second time should be cached
+    assert_equal('test|key|foo|key2|foo2', id.key)
+  end
+
+  def test_string
+    tags = { key: :foo, key2: :foo2 }
+    id = Spectator::MeterId.new('test', tags)
+    s = id.to_s
+    assert_equal("MeterId{name=test, tags=#{tags}}", s)
+  end
 end

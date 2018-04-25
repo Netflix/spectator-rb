@@ -30,4 +30,9 @@ class GaugeTest < Minitest::Test
     assert_equal(1, ms.size)
     assert(ms[0].value.nan?)
   end
+
+  def test_to_s
+    expected = 'Gauge{id=MeterId{name=gauge, tags={}}, value=NaN}'
+    assert_equal(expected, @gauge.to_s)
+  end
 end

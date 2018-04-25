@@ -9,13 +9,15 @@ Gem::Specification.new do |spec|
   spec.authors       = ['Daniel Muino']
   spec.email         = ['dmuino@netflix.com']
 
-  spec.summary       = 'Simple library for instrumenting code to record dimensional time series.'
-  spec.description   = 'Library for instrumenting ruby applications, sending metrics to an Atlas
-aggregator service.'
+  spec.summary       = 'Simple library for instrumenting code to record ' \
+    'dimensional time series.'
+  spec.description   = 'Library for instrumenting ruby applications, ' \
+    'sending metrics to an Atlas aggregator service.'
   spec.homepage      = 'https://github.com/Netflix/spectator-rb'
 
-  # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
-  # to allow pushing to a single host or delete this section to allow pushing to any host.
+  # Prevent pushing this gem to RubyGems.org. To allow pushes either
+  # set the 'allowed_push_host' to allow pushing to a single host
+  # or delete this section to allow pushing to any host.
   if spec.respond_to?(:metadata)
     spec.metadata['allowed_push_host'] = "TODO: Set to 'http://mygemserver.com'"
   else
@@ -33,4 +35,5 @@ aggregator service.'
   spec.add_development_dependency 'bundler', '~> 1.16'
   spec.add_development_dependency 'minitest', '~> 5.0'
   spec.add_development_dependency 'rake', '~> 10.0'
+  spec.add_development_dependency 'rubocop', '~> 0.55'
 end

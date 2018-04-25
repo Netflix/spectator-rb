@@ -11,6 +11,11 @@ class RegistryTest < Minitest::Test
     refute_nil ::Spectator::VERSION
   end
 
+  def test_new_id
+    id = @reg.new_id('foo')
+    assert_equal(Spectator::MeterId.new('foo'), id)
+  end
+
   def test_counter
     c = @reg.counter('foo')
     assert_equal(0, c.count)
@@ -43,8 +48,30 @@ class RegistryTest < Minitest::Test
     assert_equal(42, ds2.total_amount)
   end
 
+  def test_timer
+    t = @reg.timer('latency')
+    t2 = @reg.timer('latency')
+    assert_same(t, t2)
+
+    t.time { sleep(0.001) }
+    ms = t.measure
+    ms.each do |m|
+      case m.id.tags[:statistic]
+      when :count
+        assert_equal(1, m.value)
+      when :totalTime, :max
+        assert(m.value >= 0.001 && m.value < 0.5)
+      when :totalOfSquares
+        assert(m.value >= 1e-6)
+      else
+        flunk "Unknown stat in #{m}"
+      end
+    end
+  end
+
+  # create a new Measure with the given name and stat
   def measure(name, stat, value)
-    Spectator::Measure.new(Spectator::MeterId.new(name, statistic: stat), value)
+    Spectator::Measure.new(@reg.new_id(name, statistic: stat), value)
   end
 
   def test_measurements

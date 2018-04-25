@@ -1,3 +1,7 @@
+# Simple example to verify the API is somewhat usable
+#
+# It is not executed automatically by rake
+#
 $LOAD_PATH.unshift File.expand_path('../lib', __dir__)
 
 require 'spectator'
