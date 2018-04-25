@@ -8,6 +8,7 @@ Gem::Specification.new do |spec|
   spec.version       = Spectator::VERSION
   spec.authors       = ['Daniel Muino']
   spec.email         = ['dmuino@netflix.com']
+  spec.licenses      = ['Apache-2.0']
 
   spec.summary       = 'Simple library for instrumenting code to record ' \
     'dimensional time series.'
