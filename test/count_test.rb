@@ -30,4 +30,9 @@ class CounterTest < Minitest::Test
     assert_equal(1, ms.size)
     assert_equal(0, ms[0].value)
   end
+
+  def test_to_s
+    expected = 'Counter{id=MeterId{name=counter, tags={}}, count=0}'
+    assert_equal(expected, @cnt.to_s)
+  end
 end

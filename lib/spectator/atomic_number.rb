@@ -35,9 +35,11 @@ module Spectator
     end
 
     def max(value)
+      v = value.to_f
       @lock.synchronize do
-        @value = value if value > @value || @value.nan?
+        @value = v if v > @value || @value.nan?
       end
+      @value
     end
 
     def to_s
