@@ -3,6 +3,4 @@ language: ruby
 rvm:
   - 2.5.1
 before_install: gem install bundler -v 1.16.1
-scripts:
-  - bundle exec rake test
-  - bundle exec rubocop
+script: ./buildViaTravis.sh
