@@ -1,0 +1,22 @@
+PATH
+  remote: .
+  specs:
+    spectator-rb (0.1.0)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    minitest (5.8.5)
+    rake (10.4.2)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  bundler (~> 1.16)
+  minitest (~> 5.0)
+  rake (~> 10.0)
+  spectator-rb!
+
+BUNDLED WITH
+   1.16.1
