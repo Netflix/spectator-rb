@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/Netflix/spectator-rb.svg?branch=master)](https://travis-ci.org/Netflix/spectator-rb) 
 # Spectator-rb
 
 > :warning: Experimental
