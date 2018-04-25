@@ -1,3 +1,7 @@
+Metrics/BlockLength:
+  Exclude:
+    - 'spectator.gemspec'
+
 Metrics/AbcSize:
   Max: 30
 
