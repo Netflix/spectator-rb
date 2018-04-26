@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'spectator/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'spectator-rb'
+  spec.name          = 'netflix-spectator-rb'
   spec.version       = Spectator::VERSION
   spec.authors       = ['Daniel Muino']
   spec.email         = ['dmuino@netflix.com']
