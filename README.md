@@ -41,6 +41,10 @@ class ExampleServer
     @resp_sizes = registry.distribution_summary('server.responseSizes')
   end
 
+  def expensive_computation(request)
+    # ...
+  end
+
   def handle_request(request)
     start = @registry.clock.monotonic_time
 
@@ -59,6 +63,14 @@ class ExampleServer
     # ...
     @req_latency.record(@registry.clock.monotonic_time - start)
     @resp_sizes.record(response.size)
+
+    # timers can also time a given block
+    # this is equivalent to:
+    #  start = @registry.clock.monotonic_time
+    #  expensive_computation(request)
+    #  @registry.timer('server.computeTime').record(@registry.clock.monotonic_time - start)
+    @registry.timer('server.computeTime').time { expensive_computation(request) }
+    # ...
   end
 end
 
