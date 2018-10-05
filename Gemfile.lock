@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    netflix-spectator-rb (0.1.1)
+    netflix-spectator-rb (0.1.2)
 
 GEM
   remote: https://rubygems.org/
