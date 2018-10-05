@@ -20,6 +20,7 @@ module Spectator
     #  :uri the endpoint for the aggregator service
     def initialize(config, clock = SystemClock.new)
       @config = config
+      @batch_size = config[:batch_size] || 10_000
       @clock = clock
       @meters = {}
       @common_tags = to_symbols(config[:common_tags]) || {}
@@ -270,13 +271,16 @@ module Spectator
     # Send the current measurements to our aggregator service
     def send_metrics_now
       ms = registry_measurements
+
       if ms.empty?
         Spectator.logger.debug 'No measurements to send'
       else
-        payload = payload_for_measurements(ms)
         uri = @registry.config[:uri]
-        Spectator.logger.info "Sending #{ms.length} measurements to #{uri}"
-        @http.post_json(uri, payload)
+        ms.each_slice(@registry.batch_size) do |batch|
+          payload = payload_for_measurements(batch)
+          Spectator.logger.info "Sending #{batch.length} measurements to #{uri}"
+          @http.post_json(uri, payload)
+        end
       end
     end
 
