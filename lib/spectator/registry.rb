@@ -20,7 +20,7 @@ module Spectator
     #  :uri the endpoint for the aggregator service
     def initialize(config, clock = SystemClock.new)
       @config = config
-      @batch_size = config[:batch_size] || 10000
+      @batch_size = config[:batch_size] || 10_000
       @clock = clock
       @meters = {}
       @common_tags = to_symbols(config[:common_tags]) || {}
