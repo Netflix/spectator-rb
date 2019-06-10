@@ -172,7 +172,7 @@ module Spectator
 
     ADD_OP = 0
     MAX_OP = 10
-    COUNTER_STATS = %i(count totalAmount totalTime totalOfSquares percentile)
+    COUNTER_STATS = %i[count totalAmount totalTime totalOfSquares percentile]
 
     # Get the operation to be used for the given Measure
     # Gauges are aggregated using MAX_OP, counters with ADD_OP
