@@ -172,21 +172,18 @@ module Spectator
 
     ADD_OP = 0
     MAX_OP = 10
-    UNKNOWN_OP = -1
-    OPS = { count: ADD_OP,
-            totalAmount: ADD_OP,
-            totalTime: ADD_OP,
-            totalOfSquares: ADD_OP,
-            percentile: ADD_OP,
-            max: MAX_OP,
-            gauge: MAX_OP,
-            activeTasks: MAX_OP,
-            duration: MAX_OP }.freeze
+    COUNTER_STATS = [:count, :totalAmount, :totalTime,
+                     :totalOfSquares, :percentile].freeze
+
     # Get the operation to be used for the given Measure
     # Gauges are aggregated using MAX_OP, counters with ADD_OP
     def op_for_measurement(measure)
-      stat = measure.id.tags.fetch(:statistic, :unknown)
-      OPS.fetch(stat, UNKNOWN_OP)
+      stat = measure.id.tags.fetch(:statistic, '')
+      if COUNTER_STATS.include? stat
+        ADD_OP
+      else
+        MAX_OP
+      end
     end
 
     # Gauges are sent if they have a value
@@ -194,9 +191,7 @@ module Spectator
     def should_send(measure)
       op = op_for_measurement(measure)
       return measure.value > 0 if op == ADD_OP
-      return !measure.value.nan? if op == MAX_OP
-
-      false
+      !measure.value.nan?
     end
 
     # Build a string table from the list of measurements
