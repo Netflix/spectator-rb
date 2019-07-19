@@ -115,4 +115,8 @@ class RegistryTest < Minitest::Test
     table.concat(c).concat(f)
     assert_equal(table, payload)
   end
+
+  def test_batch_size
+    assert_equal(@reg.batch_size, Spectator::Registry::DEFAULT_BATCH_SIZE)
+  end
 end
