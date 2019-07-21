@@ -163,7 +163,7 @@ module Spectator
 
       @should_stop = true
       Spectator.logger.info('Stopping spectator')
-      @publish_thread.kill if @publish_thread
+      @publish_thread&.kill
 
       @started = false
       Spectator.logger.info('Sending last batch of metrics before exiting')
@@ -190,7 +190,8 @@ module Spectator
     # Counters if they have a number of increments greater than 0
     def should_send(measure)
       op = op_for_measurement(measure)
-      return measure.value > 0 if op == ADD_OP
+      return measure.value.positive? if op == ADD_OP
+
       !measure.value.nan?
     end
 

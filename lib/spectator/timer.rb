@@ -20,7 +20,8 @@ module Spectator
     # Update the statistics kept by this timer. If the amount of nanoseconds
     # passed is negative, the value will be ignored.
     def record(nanos)
-      return if nanos < 0
+      return if nanos.negative?
+
       @count.add_and_get(1)
       @total_time.add_and_get(nanos)
       @total_sq.add_and_get(nanos * nanos)
