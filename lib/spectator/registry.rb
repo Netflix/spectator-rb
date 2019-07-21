@@ -9,7 +9,9 @@ require 'spectator/timer'
 module Spectator
   # Registry to manage a set of meters
   class Registry
-    attr_reader :config, :clock, :publisher, :common_tags
+    DEFAULT_BATCH_SIZE = 10_000
+
+    attr_reader :config, :clock, :publisher, :common_tags, :batch_size
 
     # Initialize the registry using the given config, and clock
     # The default clock is the SystemClock
@@ -20,7 +22,7 @@ module Spectator
     #  :uri the endpoint for the aggregator service
     def initialize(config, clock = SystemClock.new)
       @config = config
-      @batch_size = config[:batch_size] || 10_000
+      @batch_size = config[:batch_size] || DEFAULT_BATCH_SIZE
       @clock = clock
       @meters = {}
       @common_tags = to_symbols(config[:common_tags]) || {}
