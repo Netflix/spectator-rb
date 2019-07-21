@@ -26,7 +26,9 @@ module Spectator
     # lazyily compute a key to be used in hashes for efficiency
     def key
       @key ||= begin
-        "#{name}|" << @tags.keys.sort.map { |k| [k, @tags[k]] }.flatten.join('|')
+        "#{name}|" << @tags.keys.sort.map do |k|
+          [k, @tags[k]]
+        end.flatten.join('|')
       end
     end
 
