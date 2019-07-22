@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class RegistryTest < Minitest::Test
   def setup
     @clock = Spectator::ManualClock.new
-    @reg = Spectator::Registry.new({ common_tags: { :'nf.app' => 'app' } },
+    @reg = Spectator::Registry.new({ common_tags: { 'nf.app': 'app' } },
                                    @clock)
   end
 
