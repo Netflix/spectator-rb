@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Spectator
   # Identifier for a meter or Measure
   class MeterId
@@ -36,7 +34,7 @@ module Spectator
 
     # A string representation for debugging purposes
     def to_s
-      "MeterId{name=#{@name}, tags=#{@tags}}"
+      "MeterId{name=#{@name}, tags=#{@tags}}".freeze
     end
 
     # Compare our id and tags against another MeterId
