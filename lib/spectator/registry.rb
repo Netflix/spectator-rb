@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spectator/clock'
 require 'spectator/counter'
 require 'spectator/distribution_summary'

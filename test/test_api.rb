@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Simple example to verify the API is somewhat usable
 #
 # It is not executed automatically by rake

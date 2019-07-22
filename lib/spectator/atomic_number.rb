@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Spectator
   # Thread safe number operations
   class AtomicNumber

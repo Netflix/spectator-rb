@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spectator/atomic_number'
 require 'spectator/clock'
 
