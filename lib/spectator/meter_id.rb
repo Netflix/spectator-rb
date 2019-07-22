@@ -27,18 +27,11 @@ module Spectator
 
     # lazyily compute a key to be used in hashes for efficiency
     def key
-      if @key.nil?
-        hash_key = @name.to_s
-        @key = hash_key
-        keys = @tags.keys
-        keys.sort
-        keys.each do |k|
-          v = tags[k]
-          hash_key += "|#{k}|#{v}"
-        end
-        @key = hash_key
+      @key ||= begin
+        "#{name}|" << @tags.keys.sort.map do |k|
+          [k, @tags[k]]
+        end.flatten.join('|')
       end
-      @key
     end
 
     # A string representation for debugging purposes

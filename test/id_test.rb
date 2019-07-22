@@ -41,4 +41,11 @@ class IdTest < Minitest::Test
     s = id.to_s
     assert_equal("MeterId{name=test, tags=#{tags}}", s)
   end
+
+  def test_tag_key_ordering
+    tags = { z: :zee, a: :aye, m: :emm }
+    id = Spectator::MeterId.new('test', tags)
+    s = id.key
+    assert_equal('test|a|aye|m|emm|z|zee', s)
+  end
 end
