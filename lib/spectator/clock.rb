@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Spectator
   # A timing source that can be used to access the current time as an object,
   # and a high resolution monotonic time

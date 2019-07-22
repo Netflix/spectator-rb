@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Spectator
   # Identifier for a meter or Measure
   class MeterId

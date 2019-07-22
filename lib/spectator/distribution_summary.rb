@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spectator/atomic_number'
 
 module Spectator
@@ -19,7 +21,8 @@ module Spectator
 
     # Update the statistics kept by the summary with the specified amount.
     def record(amount)
-      return if amount < 0
+      return if amount.negative?
+
       @count.add_and_get(1)
       @total_amount.add_and_get(amount)
       @total_sq.add_and_get(amount * amount)

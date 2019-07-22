@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Spectator
   # This immutable class represents a measurement sampled from a meter
   class Measure
