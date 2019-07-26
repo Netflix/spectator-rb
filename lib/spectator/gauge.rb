@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require 'spectator/atomic_number'
-require 'spectator/measure'
+require_relative 'atomic_number'
+require_relative 'measure'
 
 module Spectator
   # A meter with a single value that can only be sampled at a point in time.

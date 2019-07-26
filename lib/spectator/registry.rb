@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-require 'spectator/clock'
-require 'spectator/counter'
-require 'spectator/distribution_summary'
-require 'spectator/gauge'
-require 'spectator/http'
-require 'spectator/meter_id'
-require 'spectator/timer'
+require_relative 'clock'
+require_relative 'counter'
+require_relative 'distribution_summary'
+require_relative 'gauge'
+require_relative 'http'
+require_relative 'meter_id'
+require_relative 'timer'
 
 module Spectator
   # Registry to manage a set of meters

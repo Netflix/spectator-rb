@@ -18,6 +18,15 @@ module Spectator
       MeterId.new(@name, new_tags)
     end
 
+    # Create a new MeterId adding the given tags
+    def with_tags(additional_tags)
+      new_tags = @tags.dup
+      additional_tags.each do |k, v|
+        new_tags[k] = v
+      end
+      MeterId.new(@name, new_tags)
+    end
+
     # Create a new MeterId with key=statistic and the given value
     def with_stat(stat_value)
       with_tag(:statistic, stat_value)
