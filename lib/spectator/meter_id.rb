@@ -17,7 +17,7 @@ module Spectator
       new_tags[key] = value
       MeterId.new(@name, new_tags)
     end
-
+     
     # Create a new MeterId adding the given tags
     def with_tags(additional_tags)
       new_tags = @tags.dup
@@ -30,6 +30,17 @@ module Spectator
     # Create a new MeterId with key=statistic and the given value
     def with_stat(stat_value)
       with_tag(:statistic, stat_value)
+    end
+     
+    # Get a MeterId with a statistic tag. If the current MeterId
+    # already includes statistic then just return it, otherwise create
+    # a new one
+    def with_default_stat(stat_value)
+      if tags.key?(:statistic)
+        self
+      else 
+        with_tag(:statistic, stat_value)
+      end
     end
 
     # lazyily compute a key to be used in hashes for efficiency

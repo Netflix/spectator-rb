@@ -22,7 +22,7 @@ module Spectator
     def measure
       cnt = @count.get_and_set(0)
       if cnt.positive?
-        [Measure.new(@id.with_stat('count'), cnt)]
+        [Measure.new(@id.with_default_stat('count'), cnt)]
       else
         []
       end
