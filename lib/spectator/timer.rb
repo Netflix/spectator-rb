@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require 'spectator/atomic_number'
-require 'spectator/clock'
+require_relative 'atomic_number'
+require_relative 'clock'
 
 module Spectator
   # The class Timer is intended to track a large number of

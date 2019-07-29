@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require 'spectator/atomic_number'
-require 'spectator/measure'
+require_relative 'atomic_number'
+require_relative 'measure'
 
 module Spectator
   # A meter with a single value that can only be sampled at a point in time.
@@ -25,7 +25,8 @@ module Spectator
 
     # Get the current value, and reset it
     def measure
-      [Measure.new(@id.with_stat('gauge'), @value.get_and_set(Float::NAN))]
+      [Measure.new(@id.with_default_stat('gauge'),
+                   @value.get_and_set(Float::NAN))]
     end
 
     # A string representation of this gauge, useful for debugging purposes

@@ -29,8 +29,7 @@ class CounterTest < Minitest::Test
     assert_equal(expected, ms)
 
     ms = @cnt.measure
-    assert_equal(1, ms.size)
-    assert_equal(0, ms[0].value)
+    assert_empty(ms)
   end
 
   def test_to_s

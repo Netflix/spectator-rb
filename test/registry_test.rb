@@ -86,7 +86,6 @@ class RegistryTest < Minitest::Test
     sorted_ms = ms.sort_by { |m| m.id.name }
     expected = [
       measure('c', :count, 1),
-      measure('d', :count, 0),
       measure('f', :gauge, 10.0),
       measure('g', :gauge, Float::NAN)
     ]
