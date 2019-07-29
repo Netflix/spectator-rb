@@ -25,7 +25,8 @@ module Spectator
 
     # Get the current value, and reset it
     def measure
-      [Measure.new(@id.with_default_stat('gauge'), @value.get_and_set(Float::NAN))]
+      [Measure.new(@id.with_default_stat('gauge'),
+                   @value.get_and_set(Float::NAN))]
     end
 
     # A string representation of this gauge, useful for debugging purposes
