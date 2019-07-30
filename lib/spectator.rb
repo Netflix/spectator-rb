@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spectator/version'
 require 'spectator/registry'
 require 'spectator/meter_id'

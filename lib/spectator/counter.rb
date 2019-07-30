@@ -1,5 +1,7 @@
-require 'spectator/atomic_number'
-require 'spectator/measure'
+# frozen_string_literal: true
+
+require_relative 'atomic_number'
+require_relative 'measure'
 
 module Spectator
   # A counter is used to measure the rate at which an event is occurring
@@ -18,7 +20,12 @@ module Spectator
 
     # Get the current count as a list of Measure and reset the count to 0
     def measure
-      [Measure.new(@id.with_stat('count'), @count.get_and_set(0))]
+      cnt = @count.get_and_set(0)
+      if cnt.positive?
+        [Measure.new(@id.with_default_stat('count'), cnt)]
+      else
+        []
+      end
     end
 
     # Read the current count. Calls to measure will reset it

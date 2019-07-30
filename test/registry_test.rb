@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class RegistryTest < Minitest::Test
   def setup
     @clock = Spectator::ManualClock.new
-    @reg = Spectator::Registry.new({ common_tags: { :'nf.app' => 'app' } },
+    @reg = Spectator::Registry.new({ common_tags: { 'nf.app': 'app' } },
                                    @clock)
   end
 
@@ -84,7 +86,6 @@ class RegistryTest < Minitest::Test
     sorted_ms = ms.sort_by { |m| m.id.name }
     expected = [
       measure('c', :count, 1),
-      measure('d', :count, 0),
       measure('f', :gauge, 10.0),
       measure('g', :gauge, Float::NAN)
     ]

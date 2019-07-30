@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class IdTest < Minitest::Test
@@ -38,5 +40,29 @@ class IdTest < Minitest::Test
     id = Spectator::MeterId.new('test', tags)
     s = id.to_s
     assert_equal("MeterId{name=test, tags=#{tags}}", s)
+  end
+
+  def test_tag_key_ordering
+    tags = { z: :zee, a: :aye, m: :emm }
+    id = Spectator::MeterId.new('test', tags)
+    s = id.key
+    assert_equal('test|a|aye|m|emm|z|zee', s)
+  end
+
+  def test_default_stat_present
+    tags = { statistic: :foo }
+    id = Spectator::MeterId.new('id', tags)
+
+    expected = 'id|statistic|foo'
+    assert_equal(expected, id.key)
+    assert_equal(expected, id.with_default_stat('bar').key)
+  end
+
+  def test_default_stat_missing
+    tags = { x: :foo }
+    id = Spectator::MeterId.new('id', tags)
+
+    assert_equal('id|x|foo', id.key)
+    assert_equal('id|statistic|bar|x|foo', id.with_default_stat('bar').key)
   end
 end

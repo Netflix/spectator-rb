@@ -1,10 +1,12 @@
-require 'spectator/clock'
-require 'spectator/counter'
-require 'spectator/distribution_summary'
-require 'spectator/gauge'
-require 'spectator/http'
-require 'spectator/meter_id'
-require 'spectator/timer'
+# frozen_string_literal: true
+
+require_relative 'clock'
+require_relative 'counter'
+require_relative 'distribution_summary'
+require_relative 'gauge'
+require_relative 'http'
+require_relative 'meter_id'
+require_relative 'timer'
 
 module Spectator
   # Registry to manage a set of meters
@@ -165,7 +167,7 @@ module Spectator
 
       @should_stop = true
       Spectator.logger.info('Stopping spectator')
-      @publish_thread.kill if @publish_thread
+      @publish_thread&.kill
 
       @started = false
       Spectator.logger.info('Sending last batch of metrics before exiting')
@@ -192,7 +194,8 @@ module Spectator
     # Counters if they have a number of increments greater than 0
     def should_send(measure)
       op = op_for_measurement(measure)
-      return measure.value > 0 if op == ADD_OP
+      return measure.value.positive? if op == ADD_OP
+
       !measure.value.nan?
     end
 
