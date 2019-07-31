@@ -7,6 +7,7 @@ require_relative 'gauge'
 require_relative 'http'
 require_relative 'meter_id'
 require_relative 'timer'
+require_relative 'histogram/percentiles'
 
 module Spectator
   # Registry to manage a set of meters
@@ -75,6 +76,10 @@ module Spectator
     # Create or get a Timer with the given name, and optional tags
     def timer(name, tags = nil)
       timer_with_id(MeterId.new(name, tags))
+    end
+
+    def percentile_timer(name, tags = nil)
+      Histogram::PercentileTimer.new(self, name, tags)
     end
 
     # Get the list of measurements from all registered meters
