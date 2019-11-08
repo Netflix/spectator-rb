@@ -276,6 +276,13 @@ module Spectator
         Spectator.logger.debug 'No measurements to send'
       else
         uri = @registry.config[:uri]
+        if uri.nil? || uri.empty?
+          Spectator.logger.info(
+            'Ignoring sending of metrics since Spectator registry has no valid uri'
+          )
+          return
+        end
+
         ms.each_slice(@registry.batch_size) do |batch|
           payload = payload_for_measurements(batch)
           Spectator.logger.info "Sending #{batch.length} measurements to #{uri}"

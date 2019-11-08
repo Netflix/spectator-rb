@@ -9,6 +9,13 @@ class RegistryTest < Minitest::Test
                                    @clock)
   end
 
+  def test_start_stop
+    @reg.start
+    ds = @reg.distribution_summary('ds')
+    ds.record(42)
+    @reg.stop
+  end
+
   def test_version
     refute_nil ::Spectator::VERSION
   end
