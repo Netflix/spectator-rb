@@ -412,7 +412,7 @@ module Spectator
       def self.counters(registry, id, prefix)
         (0...length).map do |i|
           tags = { statistic: 'percentile',
-                   percentile: prefix + format('%04X', i) }
+                   percentile: prefix + format('%<idx>04X', idx: i) }
           counter_id = id.with_tags(tags)
           registry.counter_with_id(counter_id)
         end
