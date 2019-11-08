@@ -277,9 +277,8 @@ module Spectator
       else
         uri = @registry.config[:uri]
         if uri.nil? || uri.empty?
-          Spectator.logger.info(
-            'Ignoring sending of metrics since Spectator registry has no valid uri'
-          )
+          Spectator.logger.info('Ignoring sending of metrics ' \
+            'since Spectator registry has no valid uri')
           return
         end
 
