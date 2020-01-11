@@ -9,7 +9,7 @@ class RegistryTest < Minitest::Test
                                    @clock)
   end
 
-  def test_start_stop
+  def test_start_stop_cleanly_without_endpoint
     @reg.start
     ds = @reg.distribution_summary('ds')
     ds.record(42)
