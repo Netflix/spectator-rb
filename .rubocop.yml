@@ -1,6 +1,9 @@
+AllCops:
+  TargetRubyVersion: 2.5
+
 Metrics/BlockLength:
   Exclude:
-    - 'spectator.gemspec'
+    - 'netflix-spectator-rb.gemspec'
 
 Metrics/AbcSize:
   Max: 30
@@ -13,4 +16,3 @@ Metrics/MethodLength:
 
 Style/FrozenStringLiteralComment:
   Enabled: false
-  

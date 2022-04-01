@@ -11,6 +11,8 @@ Gem::Specification.new do |spec|
   spec.email         = ['dmuino@netflix.com']
   spec.licenses      = ['Apache-2.0']
 
+  spec.required_ruby_version = '>= 2.5'
+
   spec.summary       = 'Simple library for instrumenting code to record ' \
     'dimensional time series.'
   spec.description   = 'Library for instrumenting ruby applications, ' \
